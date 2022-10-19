@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 from abc import ABC, ABCMeta, abstractclassmethod, abstractmethod
-from template import Observer, Observable
+from framework import Observer, Observable
 
 class WaterHeater(Observable):
     def __init__(self):

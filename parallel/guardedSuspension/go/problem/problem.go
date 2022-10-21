@@ -18,7 +18,7 @@ func (m *MessageBoard) SendMessage(message string) {
 
 func (m *MessageBoard) Pop() string {
 	message := m.messages[0]
-        m.messages = m.messages[1:]
+	m.messages = m.messages[1:]
 	return message
 }
 

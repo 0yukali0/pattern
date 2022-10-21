@@ -1,9 +1,9 @@
 package solution
 
 import (
-    "fmt"
-	"sync"
+	"fmt"
 	"main/problem"
+	"sync"
 )
 
 func Producer(hostNames ...string) <-chan string {
@@ -11,7 +11,7 @@ func Producer(hostNames ...string) <-chan string {
 	go func() {
 		defer close(producerCh)
 		for _, hostName := range hostNames {
-			producerCh <- hostName	
+			producerCh <- hostName
 		}
 	}()
 	return producerCh
@@ -21,8 +21,8 @@ func Task(producerCh <-chan string, id int) <-chan string {
 	taskCh := make(chan string)
 	go func() {
 		defer close(taskCh)
-        for hostName := range producerCh {
-            fmt.Printf("go %d got a job %s\n", id, hostName)
+		for hostName := range producerCh {
+			fmt.Printf("go %d got a job %s\n", id, hostName)
 			taskCh <- problem.GetServerData(hostName)
 		}
 	}()
@@ -33,7 +33,7 @@ func Consumer(taskChs ...<-chan string) <-chan string {
 	consumerCh := make(chan string)
 	var wg sync.WaitGroup
 	wg.Add(len(taskChs))
-	go func(){
+	go func() {
 		defer close(consumerCh)
 		wg.Wait()
 	}()

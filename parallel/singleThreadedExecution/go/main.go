@@ -7,7 +7,7 @@ import(
 
 const (
 	duration = 1 * time.Second
-	ids = ["A", "B", "C", "D"]
+	ids = []string{"A", "B", "C", "D"}
 )
 
 var like Like

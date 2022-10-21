@@ -2,13 +2,13 @@ package main
 
 import (
 	"fmt"
-	"time"
 	"main/problem"
 	"main/solution"
+	"time"
 )
 
 const (
-    PARRALISM_LEVEL = 4
+	PARRALISM_LEVEL = 4
 )
 
 func SequenceGetDataFromDistributedServer() {
@@ -28,24 +28,24 @@ func SequenceGetDataFromDistributedServer() {
 }
 
 func fanInFanOut() {
-    start := time.Now()
-    hosts_IP := []string{
-        "192.168.0.1",
-        "192.168.0.2",
-        "192.168.0.3",
-    }
-    producerCh := solution.Producer(hosts_IP...)
-    tasks := make([]<-chan string, 0)
-    for id := 0; id < PARRALISM_LEVEL; id++ {
-        tasks = append(tasks, solution.Task(producerCh, id))
-    }
+	start := time.Now()
+	hosts_IP := []string{
+		"192.168.0.1",
+		"192.168.0.2",
+		"192.168.0.3",
+	}
+	producerCh := solution.Producer(hosts_IP...)
+	tasks := make([]<-chan string, 0)
+	for id := 0; id < PARRALISM_LEVEL; id++ {
+		tasks = append(tasks, solution.Task(producerCh, id))
+	}
 
-    consumerCh := solution.Consumer(tasks...)
+	consumerCh := solution.Consumer(tasks...)
 
-    for new := range consumerCh {
-        problem.ShowNews(new)
-    }
-    fmt.Printf("cost %s", time.Since(start))
+	for new := range consumerCh {
+		problem.ShowNews(new)
+	}
+	fmt.Printf("cost %s", time.Since(start))
 }
 
 func main() {

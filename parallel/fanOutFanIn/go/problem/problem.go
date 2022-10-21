@@ -1,8 +1,8 @@
 package problem
 
 import (
-	"time"
 	"fmt"
+	"time"
 )
 
 const (

@@ -10,7 +10,7 @@ const (
 
 type Like struct {
 	sync.Mutex
-	count uint16
+	count           uint16
 	IDcontributions map[string]uint16
 }
 

@@ -7,7 +7,7 @@ import (
 
 const (
 	THREE_SECOND = 3 * time.Second
-	FIVE_SECOND = 5 * time.Second
+	FIVE_SECOND  = 5 * time.Second
 )
 
 func PushNews(news string, startTime time.Time) <-chan time.Time {
